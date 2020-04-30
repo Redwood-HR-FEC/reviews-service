@@ -10,7 +10,8 @@
   "scripts": {
     "server": "nodemon server",
     "client": "webpack -d --watch",
-    "tests": "jest"
+    "tests": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "eslint-plugin-jest": "^23.8.2",
