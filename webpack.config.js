@@ -2,7 +2,6 @@
 const path = require('path');
 
 module.exports = {
-  target: "web",
   mode: 'development',
   entry: path.resolve(__dirname, 'client', 'index.js'),
   output: {
@@ -14,12 +13,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
+        use: 'babel-loader',
       },
     ],
   },
