@@ -25,6 +25,8 @@ module.exports = {
   // collectCoverageFrom: undefined,
   collectCoverageFrom: [
     '**/*.{js,jsx}',
+    '!**/public/**',
+    '!**/coverage/**',
     '!**/node_modules/**',
   ],
 
