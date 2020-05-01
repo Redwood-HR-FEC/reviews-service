@@ -23,7 +23,7 @@ let createReviews = (n, cb) => {
   let count = 0;
   let review_ids = [];
 
-  for (let r = 0; r <= n; r++) {
+  for (let revIdx = 0; revIdx <= n; revIdx++) {
 
     var review = {
       title: faker.lorem.words(faker.random.number(8) + 1),
@@ -60,9 +60,9 @@ let createReviews = (n, cb) => {
 
 let createProducts = (n) => {
 
-  for (let p = 1; p < n + 1; p++) {
+  for (let prodIdx = 1; prodIdx < n + 1; prodIdx++) {
 
-    let id = `${p}`.padStart(3, '0');
+    let id = `${prodIdx}`.padStart(3, '0');
 
     let randomOptions = function(n) {
       let sampleOptions = [
