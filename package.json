@@ -8,6 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "seed": "node database/seed.js",
     "server": "nodemon server",
     "client": "webpack -d --watch",
     "test": "jest",
@@ -17,6 +18,8 @@
   "dependencies": {
     "eslint-plugin-jest": "^23.8.2",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "mongoose": "^5.9.11",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
