@@ -24,10 +24,6 @@ const productSchema = new Schema({
 });
 
 const reviewSchema = new Schema({
-  review_id: {
-    type: Number,
-    required: true,
-  },
   title: {
     type: String,
     required: true,
@@ -79,5 +75,8 @@ const reviewSchema = new Schema({
 const Product = mongoose.model('Product', productSchema);
 const Review = mongoose.model('Review', reviewSchema);
 
-module.exports.Product = Product;
-module.exports.Review = Review;
+module.exports = {
+  Product,
+  Review,
+  db
+}
