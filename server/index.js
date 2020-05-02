@@ -1,24 +1,31 @@
 
 const express = require('express');
+const { Review, Product } = require('../database/index');
+const { getReviewsByProductId } = require('./controller/getReviewsByProductId');
 
-const Review = express();
-Review.set('port', 3003);
+const ReviewApp = express();
+ReviewApp.set('port', 3003);
 
 // The Middle
-Review.use(express.json());
-Review.use((req, resp, next) => {
+ReviewApp.use(express.json());
+ReviewApp.use((req, resp, next) => {
   console.log(`${req.method}:${req.originalUrl}`);
   next();
 });
 
 // Static
-Review.use(express.static('public'));
+ReviewApp.use(express.static('public'));
 
 
 // Routes
+ReviewApp.get(`/api/v1/products/:product_id/reviews`, getReviewsByProductId);
 
 
 // LetLive.
-Review.listen(Review.set('port'), () => {
-  console.log(`Review Server running: ${Review.set('port')}`);
+ReviewApp.listen(ReviewApp.set('port'), () => {
+  console.log(`ReviewApp Server running: ${ReviewApp.set('port')}`);
 });
+
+module.exports = {
+  ReviewApp
+}
