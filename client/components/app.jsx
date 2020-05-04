@@ -14,9 +14,9 @@ class App extends React.Component {
   componentDidMount() {
     let dummyId = '017';
     axios.get(`/api/v1/products/${dummyId}/reviews`)
-      .then(data => {
+      .then(response => {
         this.setState({
-          reviews: data.data.reviews
+          reviews: response.data.reviews
         });
       })
       .catch(err => console.log('Error: GET reviews: ', err));
