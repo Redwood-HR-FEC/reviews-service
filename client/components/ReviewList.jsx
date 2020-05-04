@@ -14,9 +14,8 @@ class ReviewList extends React.Component {
 
     return (
       <ul>
-        <li>The first of many</li>
         {this.props.reviews.map(review => (
-          <ReviewItem review={review} key={review._id} />
+          <ReviewItem rev={review} key={review._id} />
         ))}
       </ul>
     );
