@@ -14,7 +14,8 @@ Product.deleteMany({}, function (err) {
 
 // Set amounts
 let nProducts = 100;
-let nReviewsMax = 15;
+let nReviews = 10;
+// let nReviews = faker.random.number(15);
 
 
 // Seeds the collections
@@ -80,7 +81,7 @@ let createProducts = (n) => {
     };
 
 
-    createReviews(faker.random.number(nReviewsMax), (err, review_ids) => {
+    createReviews(nReviews, (err, review_ids) => {
       if (err) {
         return err;
       } else {
