@@ -1,5 +1,11 @@
 
 import React from "react";
+import {
+  ReviewListItem,
+  Profile,
+  Header, HeaderSummary, HeaderRating, HeaderTitle, HeaderSubtitle, HeaderDetails, HeaderOptions, HeaderVerified,
+  Body,
+  Footer, FooterButton, FooterText, FooterLink, Spacer } from "./ReviewItem.styles";
 
 class ReviewItem extends React.Component {
   constructor(props) {
@@ -10,6 +16,8 @@ class ReviewItem extends React.Component {
   render() {
 
     let { rev } = this.props;
+
+    // Read more / less template
     let revBody;
     if (rev.body.length > 500) {
       revBody = (
@@ -23,33 +31,44 @@ class ReviewItem extends React.Component {
     }
 
     return (
-      <li className="rev">
+      <ReviewListItem>
         <article>
-          <header className="rev__header">
-            <div className="rev__profile">
+          <Header>
+            <Profile>
               <img src={rev.profile.avatar} alt="" />
               <h4>{rev.profile.name}</h4>
-            </div>
-            <span className="rev__rating">{rev.star_rating}</span>
-            <h3 className="rev__title">{rev.title}</h3>
-            <p className="rev__details">Reviewed in {rev.country} on {rev.date}</p>
-            <ul className="rev__options">
-              {rev.product_options.map(options => (
-                <li>{options}</li>
-              ))}
-            </ul>
-            <p className="rev__verified"><strong>{rev.avp_badge ? 'Verified Purchase' : ''}</strong></p>
-          </header>
-          <div className="rev__body">
+            </Profile>
+            <HeaderSummary>
+              <HeaderRating
+                className={'star-'+rev.star_rating}
+                aria-label="{rev.star_rating} out of 5 stars"></HeaderRating>
+              <HeaderTitle href="#">
+                <h3>{rev.title}</h3>
+              </HeaderTitle>
+            </HeaderSummary>
+            <HeaderSubtitle>Reviewed in {rev.country} on {rev.date}</HeaderSubtitle>
+            <HeaderDetails>
+              <HeaderOptions>
+                {rev.product_options.map(options => (
+                  <li>{options}<Spacer></Spacer></li>
+                ))}
+              </HeaderOptions>
+              <HeaderVerified>{rev.avp_badge ? 'Verified Purchase' : ''}</HeaderVerified>
+            </HeaderDetails>
+          </Header>
+          <Body>
             {revBody}
-          </div>
-          <footer className="rev__footer">
-            <button>Helpful</button>
-            <a href="#">Comment</a>
-            <a href="#">Report abuse</a>
-          </footer>
+          </Body>
+          <Footer>
+            <FooterText>{rev.helpful_vote} people found this helpful</FooterText>
+            <FooterButton>Helpful</FooterButton>
+            <Spacer></Spacer>
+            <FooterLink href="#">Comment</FooterLink>
+            <Spacer></Spacer>
+            <FooterLink href="#">Report abuse</FooterLink>
+          </Footer>
         </article>
-      </li>
+      </ReviewListItem>
     );
   }
 }
