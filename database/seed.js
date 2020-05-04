@@ -13,7 +13,7 @@ Product.deleteMany({}, function (err) {
 
 
 // Set amounts
-let nProducts = 120; // Mongo seems to drop a few
+let nProducts = 100;
 let nReviewsMax = 15;
 
 
@@ -62,6 +62,8 @@ let createProducts = (n) => {
 
   for (let prodIdx = 1; prodIdx < n + 1; prodIdx++) {
 
+    console.log(prodIdx);
+
     let id = `${prodIdx}`.padStart(3, '0');
 
     let randomOptions = function(n) {
@@ -82,18 +84,18 @@ let createProducts = (n) => {
       if (err) {
         return err;
       } else {
-        var product = new Product({
+        var product = {
           product_id: id,
           product_option: randomOptions(faker.random.number(3)),
           product_reviews: review_ids,
-        });
+        };
 
-        product.save(function (err) {
+        Product.create(product, (err, products) => {
           if (err) {
             console.log(err);
             return err;
           }
-          console.log(`Saved Product: ${id}`);
+          console.log(`Saved Product: ${products.product_id}`);
         });
       }
     });
