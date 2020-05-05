@@ -42,7 +42,7 @@ class ReviewItem extends React.Component {
       revBody = (
         <BodyWrapper className={toggleClass} >
           <p>BIG: {rev.body}</p>
-      <ReadMore onClick={this.handleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
+          <ReadMore onClick={this.handleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
         </BodyWrapper>
       );
     } else {
@@ -68,8 +68,8 @@ class ReviewItem extends React.Component {
             <HeaderSubtitle>Reviewed in {rev.country} on {rev.date}</HeaderSubtitle>
             <HeaderDetails>
               <HeaderOptions>
-                {rev.product_options.map(options => (
-                  <li>{options}<Spacer></Spacer></li>
+                {rev.product_options.map((options, idx) => (
+                  <li key={idx}>{options}<Spacer></Spacer></li>
                 ))}
               </HeaderOptions>
               <HeaderVerified>{rev.avp_badge ? 'Verified Purchase' : ''}</HeaderVerified>
