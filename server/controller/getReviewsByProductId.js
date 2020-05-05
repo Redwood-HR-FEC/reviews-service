@@ -7,7 +7,9 @@ module.exports = {
 
   getReviewsByProductId: (req, resp) => {
     Product.find({ product_id: `${req.params.product_id}` })
-      .then((data) => {
+    .then((data) => {
+
+        // console.log('prodId: ', req.params.product_id);
 
         // get the array of review ids
         let revArr = data[0].product_reviews;
@@ -15,11 +17,15 @@ module.exports = {
 
         const findReviews = (revId) => {
           console.log('revId: ', revId);
-          return new Promise(resolve => {
+          return new Promise((resolve, reject) => {
             return Review.findById(revId, (err, data) => {
-              if (err) throw err
-              if (!err) {
+              if (err) {
+                throw err
+              } else {
                 if (data) {
+
+                  // console.log('data', data);
+
                   data = {
                     ...data._doc,
                     product_id: req.params.product_id,
@@ -27,8 +33,8 @@ module.exports = {
                   };
                   resolve(data);
                 } else {
-                  resp.status(500).send(err);
-                  throw Error ('No data._doc matches the review ID');
+                  console.log('No data', data);
+                  reject(data);
                 }
               }
             })
@@ -45,10 +51,15 @@ module.exports = {
             reviews: data
           });
         })
+        .catch(err => {
+          resp.status(500).send('No Review matches the review_ID');
+          console.log('No Review matches the review_ID');
+        })
 
       })
       .catch((err) => {
-        resp.status(500).send(err);
+        resp.status(500).send('No Product matches the product_ID');
+        console.log('No Product matches the product_ID');
       });
   }
 }
