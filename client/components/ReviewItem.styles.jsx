@@ -70,7 +70,6 @@ export const HeaderRating = styled.span`
   &.star-3 { background-position: -37px -368px; }
   &.star-4 { background-position: -21px -368px; }
   &.star-5 { background-position: -5px  -368px; }
-
 `
 
 export const HeaderTitle = styled.a`

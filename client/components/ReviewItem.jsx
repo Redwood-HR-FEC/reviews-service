@@ -41,12 +41,12 @@ class ReviewItem extends React.Component {
     if (rev.body.length > 600) {
       revBody = (
         <BodyWrapper className={toggleClass} >
-          <p>BIG: {rev.body}</p>
+          <p>{rev.body}</p>
           <ReadMore onClick={this.handleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
         </BodyWrapper>
       );
     } else {
-      revBody = <p>little:{rev.body}</p>;
+      revBody = <p>{rev.body}</p>;
     }
 
     return (
@@ -60,7 +60,8 @@ class ReviewItem extends React.Component {
             <HeaderSummary>
               <HeaderRating
                 className={'star-'+rev.star_rating}
-                aria-label="{rev.star_rating} out of 5 stars"></HeaderRating>
+                aria-label="{rev.star_rating} out of 5 stars">
+              </HeaderRating>
               <HeaderTitle href="#">
                 <h3>{rev.title}</h3>
               </HeaderTitle>
