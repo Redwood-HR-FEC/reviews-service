@@ -11,19 +11,38 @@ class ReviewItem extends React.Component {
   constructor(props) {
     super(props);
 
+      this.state = {
+        isOpen: false,
+      }
+
+      this.handleClick = this.handleClick.bind(this);
   }
+
+
+  // Toggle Read more / less
+  handleClick() {
+    console.log('toggled');
+
+    this.setState(prev => ({
+      isOpen: !prev.isOpen,
+    }));
+  }
+
 
   render() {
 
     let { rev } = this.props;
+    let { isOpen } = this.state;
+
+    let toggleClass = isOpen ? 'is-open' : '' ;
 
     // Read more / less template
     let revBody;
-    if (rev.body.length > 500) {
+    if (rev.body.length > 600) {
       revBody = (
-        <BodyWrapper>
+        <BodyWrapper className={toggleClass} >
           <p>BIG: {rev.body}</p>
-          <ReadMore><span></span>Read more</ReadMore>
+      <ReadMore onClick={this.handleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
         </BodyWrapper>
       );
     } else {
