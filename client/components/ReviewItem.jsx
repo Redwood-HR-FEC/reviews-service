@@ -15,17 +15,25 @@ class ReviewItem extends React.Component {
         isOpen: false,
       }
 
-      this.handleClick = this.handleClick.bind(this);
+      this.handleToggleClick = this.handleToggleClick.bind(this);
+      this.handleHelpfulIncClick = this.handleHelpfulIncClick.bind(this);
   }
 
 
   // Toggle Read more / less
-  handleClick() {
+  handleToggleClick() {
     console.log('toggled');
 
     this.setState(prev => ({
       isOpen: !prev.isOpen,
     }));
+  }
+
+
+  // Increment the helpful vote by calling the app Incrementor
+  handleHelpfulIncClick(event) {
+    event.preventDefault();
+    this.props.handleHelpfulInc(this.props.rev._id);
   }
 
 
@@ -42,7 +50,7 @@ class ReviewItem extends React.Component {
       revBody = (
         <BodyWrapper className={toggleClass} >
           <p>{rev.body}</p>
-          <ReadMore onClick={this.handleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
+          <ReadMore onClick={this.handleToggleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
         </BodyWrapper>
       );
     } else {
@@ -81,7 +89,7 @@ class ReviewItem extends React.Component {
           </Body>
           <Footer>
             <FooterText>{rev.helpful_vote} people found this helpful</FooterText>
-            <FooterButton>Helpful</FooterButton>
+            <FooterButton onClick={this.handleHelpfulIncClick}>Helpful</FooterButton>
             <Spacer></Spacer>
             <FooterLink href="#">Comment</FooterLink>
             <Spacer></Spacer>

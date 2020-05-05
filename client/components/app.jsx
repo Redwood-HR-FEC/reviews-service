@@ -13,6 +13,8 @@ class App extends React.Component {
       reviews: [],
       userMsg: '',
     };
+
+    this.handleHelpfulInc = this.handleHelpfulInc.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +39,11 @@ class App extends React.Component {
 
   }
 
+
+  handleHelpfulInc(review_id) {
+    console.log(review_id);
+  }
+
   render() {
     const { userMsg } = this.state;
 
@@ -47,7 +54,7 @@ class App extends React.Component {
           <h1>Amazon Reviews</h1>
           {userMsg ? <Msg>{userMsg}</Msg> : ''}
           {/* <SelectOrder /> */}
-          <ReviewList reviews={this.state.reviews} />
+          <ReviewList reviews={this.state.reviews} handleHelpfulInc={this.handleHelpfulInc} />
         </Wrapper>
       </React.Fragment>
     );
