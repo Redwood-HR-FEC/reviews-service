@@ -1,5 +1,5 @@
 
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const ReviewListItem = styled.li`
   max-width: 80em;
@@ -124,6 +124,68 @@ export const HeaderVerified = styled.p`
 
 // Body
 export const Body = styled.div``
+
+export const BodyWrapper = styled.div`
+  max-height: 176px;
+  position: relative;
+  overflow: hidden;
+
+  span {
+    background-image: url(./AmazonUIIcon-sprite.png);
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: baseline;
+    width: 7px;
+    height: 9px;
+    background-position: -82px -293px;
+    margin-right: 5px;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: linear-gradient(to bottom,rgba(255,255,255,0),#fff);
+    border-bottom: solid 16px #fff;
+  }
+
+  &.is-open {
+    max-height: none;
+    padding-bottom: 4px;
+
+    &::after {
+      display: none;
+    }
+
+    span{
+      background-position: -94px -293px;
+    }
+  }
+`
+
+export const ReadMore = styled.button`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  font-size: 13px;
+  color: #0066c0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+
+  &:hover {
+    color: #c45500;
+    text-decoration: underline;
+  }
+`
 
 
 // Footer styles

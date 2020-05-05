@@ -4,7 +4,7 @@ import {
   ReviewListItem,
   Profile,
   Header, HeaderSummary, HeaderRating, HeaderTitle, HeaderSubtitle, HeaderDetails, HeaderOptions, HeaderVerified,
-  Body,
+  Body, BodyWrapper, ReadMore,
   Footer, FooterButton, FooterText, FooterLink, Spacer } from "./ReviewItem.styles";
 
 class ReviewItem extends React.Component {
@@ -21,10 +21,10 @@ class ReviewItem extends React.Component {
     let revBody;
     if (rev.body.length > 500) {
       revBody = (
-        <div className="read-more__wrapper">
+        <BodyWrapper>
           <p>BIG: {rev.body}</p>
-          <button className="read-more__btn">Read more</button>
-        </div>
+          <ReadMore><span></span>Read more</ReadMore>
+        </BodyWrapper>
       );
     } else {
       revBody = <p>little:{rev.body}</p>;
