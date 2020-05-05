@@ -30,7 +30,7 @@ let createReviews = (n, cb) => {
       title: faker.lorem.words(faker.random.number(8) + 1),
       star_rating: faker.random.number(4) + 1,
       date: faker.date.past(),
-      body: faker.lorem.words(faker.random.number(150) + 1),
+      body: faker.lorem.words(faker.random.number(300) + 1),
       country: faker.address.country(),
       helpful_vote: faker.random.number(1000),
       avp_badge: (faker.random.number(10) < 9 ? true : false ),
