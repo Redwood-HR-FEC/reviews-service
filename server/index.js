@@ -14,7 +14,7 @@ ReviewApp.use((req, resp, next) => {
 });
 
 // Static
-ReviewApp.use(express.static('public'));
+ReviewApp.use('/:id', express.static('public'));
 
 
 // Routes
