@@ -1,4 +1,4 @@
-# Amazon Review Service for Hace Reactor FEC
+# Amazon Review Service for Hack Reactor FEC
 
 Replicates an [Amazon product](https://www.amazon.com/dp/B07NXDPLJ9/ref=smi_www_rco2_go_smi_8217842112) page Review module with dummy date, to be then served via a proxy app along with other team mates modules as a page.
 
