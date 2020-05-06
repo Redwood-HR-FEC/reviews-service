@@ -1,6 +1,6 @@
 # Amazon Review Service for Hace Reactor FEC
 
-> Replicates the [Amazon product](https://www.amazon.com/dp/B07NXDPLJ9/ref=smi_www_rco2_go_smi_8217842112) page Review module with dummy date, then serve via a proxy app along with other team modules as a page
+Replicates an [Amazon product](https://www.amazon.com/dp/B07NXDPLJ9/ref=smi_www_rco2_go_smi_8217842112) page Review module with dummy date, to be then served via a proxy app along with other team mates modules as a page.
 
 
 ## Related Projects
@@ -12,7 +12,7 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Usage](#usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
 
@@ -35,18 +35,19 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 ## Development
 
-Tracker https://trello.com/b/tnxnR5Gp/paul
-Tests https://app.circleci.com/pipelines/github/Redwood-HR-FEC/reviews-service
+- Tracker https://trello.com/b/tnxnR5Gp/paul
+- Tests https://app.circleci.com/pipelines/github/Redwood-HR-FEC/reviews-service
 
 ### Installing Dependencies
 
-Install Mongo [with Brew](https://www.mongodb.com/blog/post/mongodbs-official-brew-tap-now-open-and-flowing) if you don't have it.
+Will need Mongo DB which you can install [with Brew](https://www.mongodb.com/blog/post/mongodbs-official-brew-tap-now-open-and-flowing) if you don't have it.
+
 From within the root directory:
 
 ```sh
 npm install -g webpack
 npm install
-brew services start mongodb // Check Mongo DB is running. 
+brew services start mongodb-community // Check Mongo DB is running. 
 
 ```
 
