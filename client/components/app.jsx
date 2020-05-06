@@ -69,7 +69,6 @@ class App extends React.Component {
       <React.Fragment>
         <GlobalStyle />
         <Wrapper>
-          <h1>Amazon Reviews</h1>
           {userMsg ? <Msg>{userMsg}</Msg> : ''}
           {/* <SelectOrder /> */}
           <ReviewList reviews={this.state.reviews} handleHelpfulInc={this.handleHelpfulInc} />
