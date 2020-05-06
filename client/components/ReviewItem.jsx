@@ -2,10 +2,10 @@
 import React from "react";
 import {
   ReviewListItem,
-  Profile,
+  Profile, Spacer,
   Header, HeaderSummary, HeaderRating, HeaderTitle, HeaderSubtitle, HeaderDetails, HeaderOptions, HeaderVerified,
   Body, BodyWrapper, ReadMore,
-  Footer, FooterButton, FooterText, FooterLink, Spacer } from "./ReviewItem.styles";
+  Footer, FooterButton, FooterText, FooterLink, Feedback } from "./ReviewItem.styles";
 
 class ReviewItem extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class ReviewItem extends React.Component {
 
       this.state = {
         isOpen: false,
+        helpVoted: false,
       }
 
       this.handleToggleClick = this.handleToggleClick.bind(this);
@@ -33,6 +34,9 @@ class ReviewItem extends React.Component {
   // Increment the helpful vote by calling the app Incrementor
   handleHelpfulIncClick(event) {
     event.preventDefault();
+    this.setState({
+      helpVoted: true,
+    });
     this.props.handleHelpfulInc(this.props.rev._id);
   }
 
@@ -89,7 +93,10 @@ class ReviewItem extends React.Component {
           </Body>
           <Footer>
             <FooterText>{rev.helpful_vote.toLocaleString()} people found this helpful</FooterText>
-            <FooterButton onClick={this.handleHelpfulIncClick}>Helpful</FooterButton>
+            {this.state.helpVoted
+              ? <Feedback><span></span> Thank you for your feedback.</Feedback>
+              : <FooterButton onClick={this.handleHelpfulIncClick}>Helpful</FooterButton>
+            }
             <Spacer></Spacer>
             <FooterLink href="#">Comment</FooterLink>
             <Spacer></Spacer>
