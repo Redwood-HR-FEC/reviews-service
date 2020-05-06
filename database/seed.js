@@ -1,7 +1,10 @@
 
-const { Review, Product, db } = require('./index');
 const faker = require('faker');
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
+const { Review, Product, db } = require('./index');
 
 // Clear the desk
 Review.deleteMany({}, function (err) {
@@ -15,6 +18,7 @@ Product.deleteMany({}, function (err) {
 // Set amounts
 let nProducts = 100;
 let nReviews = 10;
+let nImages = 50;
 // let nReviews = faker.random.number(15);
 
 
@@ -36,7 +40,7 @@ let createReviews = (n, cb) => {
       avp_badge: (faker.random.number(10) < 9 ? true : false ),
       profile: {
         name: faker.name.findName(),
-        avatar: faker.internet.avatar(),
+        avatar: `https://ghrsea09-fec-review-service.s3-us-west-2.amazonaws.com/avatar-${faker.random.number(nImages)}.jpg`,
       }
     };
 
@@ -63,7 +67,7 @@ let createProducts = (n) => {
 
   for (let prodIdx = 1; prodIdx < n + 1; prodIdx++) {
 
-    console.log(prodIdx);
+    // console.log(prodIdx);
 
     let id = `${prodIdx}`.padStart(3, '0');
 
@@ -96,7 +100,7 @@ let createProducts = (n) => {
             console.log(err);
             return err;
           }
-          console.log(`Saved Product: ${products.product_id}`);
+          // console.log(`Saved Product: ${products.product_id}`);
         });
       }
     });
@@ -104,6 +108,34 @@ let createProducts = (n) => {
 };
 
 createProducts(nProducts);
+
+
+
+
+async function scrapeImage (n) {
+
+  const url = faker.internet.avatar();
+  const file = path.join(__dirname, 'data',`avatar-${n}.jpg`);
+  const writer = fs.createWriteStream(file)
+
+  const resp = await axios({
+    url,
+    method: 'GET',
+    responseType: 'stream'
+  })
+
+  resp.data.pipe(writer)
+
+  return new Promise((resolve, reject) => {
+    writer.on('finish', resolve)
+    writer.on('error', reject)
+  })
+};
+
+for (let i = 0; i < nImages; i++) {
+  scrapeImage(i);
+}
+
 
 // Close the DB connection
 setTimeout(() => {
