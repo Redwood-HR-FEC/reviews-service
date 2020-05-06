@@ -144,3 +144,9 @@ setTimeout(() => {
   });
 }, 5000);
 
+
+module.exports = {
+  createProducts,
+  createReviews,
+  scrapeImage,
+}
