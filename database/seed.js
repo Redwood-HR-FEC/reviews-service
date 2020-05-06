@@ -32,7 +32,7 @@ let createReviews = (n, cb) => {
       date: faker.date.past(),
       body: faker.lorem.words(faker.random.number(300) + 1),
       country: faker.address.country(),
-      helpful_vote: faker.random.number(1000),
+      helpful_vote: faker.random.number(1200),
       avp_badge: (faker.random.number(10) < 9 ? true : false ),
       profile: {
         name: faker.name.findName(),
