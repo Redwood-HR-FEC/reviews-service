@@ -18,13 +18,13 @@ Replicates an [Amazon product](https://www.amazon.com/dp/B07NXDPLJ9/ref=smi_www_
 
 ## Usage
 
-Follow the Install guide below firest
-> 1. `npm run seed` To populate the database with random data to render the app with.
-> 1. `npm run server` Starts the Node server which serves the app on [http://127.0.0.1:3003/006/](http://127.0.0.1:3003/006/).
+Follow the Install guide below first
+> 1. `npm run seed` Populate the database with random data needed to render the service.
+> 1. `npm run server` Starts the Node server which serves the service on [http://127.0.0.1:3003/006/](http://127.0.0.1:3003/006/).
 > 1. `npm run client` Kicks of Webpack with a watcher to transpile, bundle etc.
-> 1. `npm run test` Run the tests once
-> 1. `npm run test:watch` Run the tests and watch for file chages and re-run.
-> 1. `npm run test:cover` Run the tests with the coverage report and pop open the browser UI version.
+> 1. `npm run test` Runs the tests once
+> 1. `npm run test:watch` Runs the tests and watch for file chages and re-run.
+> 1. `npm run test:cover` Runs the tests with the coverage report and pop it open the browser.
 
 ## Requirements
 
@@ -40,7 +40,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 ### Installing Dependencies
 
-Will need Mongo DB which you can install [with Brew](https://www.mongodb.com/blog/post/mongodbs-official-brew-tap-now-open-and-flowing) if you don't have it.
+Requires Mongo DB which you can install [with Brew](https://www.mongodb.com/blog/post/mongodbs-official-brew-tap-now-open-and-flowing) if you don't have it.
 
 From within the root directory:
 
