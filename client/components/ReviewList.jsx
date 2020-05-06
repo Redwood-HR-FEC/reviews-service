@@ -10,12 +10,10 @@ class ReviewList extends React.Component {
 
   render() {
 
-    console.log(this.props.reviews);
-
     return (
       <ul>
         {this.props.reviews.map(review => (
-          <ReviewItem rev={review} key={review._id} />
+          <ReviewItem rev={review} key={review._id} handleHelpfulInc={this.props.handleHelpfulInc} />
         ))}
       </ul>
     );

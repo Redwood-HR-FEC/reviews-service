@@ -1,7 +1,6 @@
 
 const express = require('express');
-const { Review, Product } = require('../database/index');
-const { getReviewsByProductId } = require('./controller/getReviewsByProductId');
+const { getReviewsByProductId, patchReviewIncrementHelp } = require('./controller');
 
 const ReviewApp = express();
 ReviewApp.set('port', 3003);
@@ -19,6 +18,8 @@ ReviewApp.use('/:id', express.static('public'));
 
 // Routes
 ReviewApp.get(`/api/v1/products/:product_id/reviews`, getReviewsByProductId);
+
+ReviewApp.patch(`/api/v1/reviews/:review_id/helpful`, patchReviewIncrementHelp);
 
 
 // LetLive.

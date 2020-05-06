@@ -192,7 +192,7 @@ export const ReadMore = styled.button`
 export const Footer = styled.footer``
 
 export const FooterText = styled.p`
-color: #767676;
+  color: #767676;
   margin-bottom: 10px;
 `
 
@@ -228,6 +228,27 @@ export const FooterButton = styled.button`
     outline: 0;
     border-color: #e77600;
     box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+  }
+`
+
+export const Feedback = styled.p`
+  display: inline;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 12px;
+  line-height: 31px;
+  color: #007600;
+
+  span {
+    height: 13px;
+    width: 14px;
+    background-image: url(./AmazonUIIcon-sprite.png);
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    background-position: -117px -130px;
+    padding-left: 4px;
   }
 `
 

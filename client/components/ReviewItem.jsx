@@ -2,10 +2,10 @@
 import React from "react";
 import {
   ReviewListItem,
-  Profile,
+  Profile, Spacer,
   Header, HeaderSummary, HeaderRating, HeaderTitle, HeaderSubtitle, HeaderDetails, HeaderOptions, HeaderVerified,
   Body, BodyWrapper, ReadMore,
-  Footer, FooterButton, FooterText, FooterLink, Spacer } from "./ReviewItem.styles";
+  Footer, FooterButton, FooterText, FooterLink, Feedback } from "./ReviewItem.styles";
 
 class ReviewItem extends React.Component {
   constructor(props) {
@@ -13,19 +13,31 @@ class ReviewItem extends React.Component {
 
       this.state = {
         isOpen: false,
+        helpVoted: false,
       }
 
-      this.handleClick = this.handleClick.bind(this);
+      this.handleToggleClick = this.handleToggleClick.bind(this);
+      this.handleHelpfulIncClick = this.handleHelpfulIncClick.bind(this);
   }
 
 
   // Toggle Read more / less
-  handleClick() {
+  handleToggleClick() {
     console.log('toggled');
 
     this.setState(prev => ({
       isOpen: !prev.isOpen,
     }));
+  }
+
+
+  // Increment the helpful vote by calling the app Incrementor
+  handleHelpfulIncClick(event) {
+    event.preventDefault();
+    this.setState({
+      helpVoted: true,
+    });
+    this.props.handleHelpfulInc(this.props.rev._id);
   }
 
 
@@ -42,7 +54,7 @@ class ReviewItem extends React.Component {
       revBody = (
         <BodyWrapper className={toggleClass} >
           <p>{rev.body}</p>
-          <ReadMore onClick={this.handleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
+          <ReadMore onClick={this.handleToggleClick}><span></span>Read {isOpen ? 'less' : 'more'}</ReadMore>
         </BodyWrapper>
       );
     } else {
@@ -80,8 +92,11 @@ class ReviewItem extends React.Component {
             {revBody}
           </Body>
           <Footer>
-            <FooterText>{rev.helpful_vote} people found this helpful</FooterText>
-            <FooterButton>Helpful</FooterButton>
+            <FooterText>{rev.helpful_vote.toLocaleString()} people found this helpful</FooterText>
+            {this.state.helpVoted
+              ? <Feedback><span></span> Thank you for your feedback.</Feedback>
+              : <FooterButton onClick={this.handleHelpfulIncClick}>Helpful</FooterButton>
+            }
             <Spacer></Spacer>
             <FooterLink href="#">Comment</FooterLink>
             <Spacer></Spacer>
