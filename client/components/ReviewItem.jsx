@@ -88,7 +88,7 @@ class ReviewItem extends React.Component {
             {revBody}
           </Body>
           <Footer>
-            <FooterText>{rev.helpful_vote} people found this helpful</FooterText>
+            <FooterText>{rev.helpful_vote.toLocaleString()} people found this helpful</FooterText>
             <FooterButton onClick={this.handleHelpfulIncClick}>Helpful</FooterButton>
             <Spacer></Spacer>
             <FooterLink href="#">Comment</FooterLink>
