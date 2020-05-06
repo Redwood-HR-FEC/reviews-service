@@ -60,5 +60,36 @@ module.exports = {
         resp.status(500).send('No Product matches the product_ID');
         console.log('No Product matches the product_ID');
       });
+  },
+
+  patchReviewIncrementHelp: (req, resp) => {
+
+    let revId = req.params.review_id;
+    console.log('Increment: ', revId);
+
+    Review.findById(revId, (err, doc) => {
+      if (err) throw err
+      if (doc) {
+        console.log(doc.helpful_vote);
+        let inc = doc.helpful_vote + 1;
+        doc.helpful_vote = inc;
+
+        doc.save((err, review) => {
+          if (err) {
+            resp.status(500).send('No Review matches the review_ID');
+            console.log('No Review matches the review_ID');
+          }
+          if (review) {
+            resp.status(201).send({
+              "_id": review._id,
+              "helpful_vote": review.helpful_vote
+            });
+          }
+        });
+      } else {
+        resp.status(500).send('No Review matches the review_ID');
+        console.log('No Review matches the review_ID');
+      }
+    });
   }
 }

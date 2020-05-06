@@ -17,14 +17,20 @@ class App extends React.Component {
     this.handleHelpfulInc = this.handleHelpfulInc.bind(this);
   }
 
+
   componentDidMount() {
+    this.getAllReviews();
+  }
+
+
+  getAllReviews() {
 
     // Get the ID from the url
-    let Id = window.location.pathname.slice(1, -1);
-    // Id = Number(Id); // Un-pad if needed
+    let id = window.location.pathname.slice(1, -1);
+    // id = Number(Id); // Un-pad if needed
 
     // Fetch with the ID
-    axios.get(`/api/v1/products/${Id}/reviews`)
+    axios.get(`/api/v1/products/${id}/reviews`)
       .then(response => {
         this.setState({
           reviews: response.data.reviews
@@ -32,17 +38,29 @@ class App extends React.Component {
       })
       .catch(err => {
         console.log('Error: GET reviews: ', err);
-        this.setState({
-          userMsg: '500: There was an error, please try a different ID.'
-        });
+        this.setState({ userMsg: '500: There was an error, please try a different ID.'});
       });
 
   }
 
 
   handleHelpfulInc(review_id) {
-    console.log(review_id);
+
+    // Patch the review by ID
+    axios.patch(`/api/v1/reviews/${review_id}/helpful`)
+      .then(resp => {
+        // console.log(resp.data);
+        this.setState(prev => ({
+          reviews: prev.reviews.map(rev => {
+            return rev._id === resp.data._id ? { ...rev, helpful_vote: resp.data.helpful_vote } : rev
+          })
+        }));
+      })
+      .catch(err => {
+        console.log('Error: PATCH review '+ review_id +' : ', err);
+      });
   }
+
 
   render() {
     const { userMsg } = this.state;
