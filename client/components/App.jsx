@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReviewList from "./ReviewList";
+import SelectOrder from "./SelectOrder";
 import { GlobalStyle, Wrapper, Msg } from "./App.style";
 
 class App extends React.Component {
@@ -69,7 +70,7 @@ class App extends React.Component {
         <GlobalStyle />
         <Wrapper>
           {userMsg ? <Msg>{userMsg}</Msg> : ''}
-          {/* <SelectOrder /> */}
+          <SelectOrder />
           <ReviewList reviews={this.state.reviews} handleHelpfulInc={this.handleHelpfulInc} />
         </Wrapper>
       </React.Fragment>
