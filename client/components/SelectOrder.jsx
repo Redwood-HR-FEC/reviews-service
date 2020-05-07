@@ -8,7 +8,11 @@ class SelectOrder extends React.Component {
 
       this.state = {
         isOpen: false,
-        options: [],
+        options: [
+          { value: 'top-reviews', text: 'Top Reviews'},
+          { value: 'most-recent', text: 'Most Recent'},
+        ],
+        orderBy: 'top-reviews',
       }
 
       this.handleToggleClick = this.handleToggleClick.bind(this);
@@ -29,10 +33,10 @@ class SelectOrder extends React.Component {
   // Increment the helpful vote by calling the app Incrementor
   handleOptionChange(event) {
     event.preventDefault();
-    // this.setState({
-    //   helpVoted: true,
-    // });
-    // this.props.handleHelpfulInc(this.props.rev._id);
+    this.setState({
+      orderBy: event.target.value
+    });
+    // this.props.handleOrderChange(event.target.value);
   }
 
 
@@ -43,17 +47,17 @@ class SelectOrder extends React.Component {
     let toggleClass = isOpen ? 'is-open' : '' ;
 
     return (
-      <Select
-        className={toggleClass}
-        onChange={this.handleOptionChange}>
-        <Option>
-          {/* {rev.product_options.map((options, idx) => (
-            <li key={idx}>{options}<Spacer></Spacer></li>
-          ))} */}
-          1
-        </Option>
-        <Option>2</Option>
-      </Select>
+      <div>
+        {this.state.orderBy}
+        <Select
+          className={toggleClass}
+          value={this.state.orderBy}
+          onChange={this.handleOptionChange}>
+          {this.state.options.map((option, idx) => (
+            <Option key={option.value} value={option.value}>{option.text}</Option>
+            ))}
+        </Select>
+      </div>
     );
   }
 }
