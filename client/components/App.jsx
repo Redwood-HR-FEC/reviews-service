@@ -30,7 +30,8 @@ class App extends React.Component {
       ]
     });
 
-    this.getAllReviews();
+    // Hydration is important
+    this.getAllReviews(this.state.options[0].value);
   }
 
 
