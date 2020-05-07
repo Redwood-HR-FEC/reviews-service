@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import axios from 'axios';
 import App from '../client/components/App';
 
 describe('App.jsx Unit Tests', () => {
@@ -54,7 +53,7 @@ describe('App.jsx Unit Tests', () => {
   });
 
   // Ya Basic
-  test('Should render the app component on the screen', () => {
+  test('Should render the App component on the screen', () => {
     const wrapper = shallow(<App />);
     expect(wrapper).toExist();
   });

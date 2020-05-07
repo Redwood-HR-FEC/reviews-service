@@ -13,7 +13,7 @@ class ReviewList extends React.Component {
     return (
       <ul>
         {this.props.reviews.map(review => (
-          <ReviewItem rev={review} key={review._id} handleHelpfulInc={this.props.handleHelpfulInc} />
+          <ReviewItem rev={review} key={review._id} handleHelpfulInc={this.props.handleHelpfulInc} className="jest-rev" />
         ))}
       </ul>
     );
