@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../client/components/Appp';
+import App from '../client/components/App';
 
 describe('App.jsx Unit Tests', () => {
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReviewList from "./ReviewList";
-import { GlobalStyle, Wrapper, Msg } from "./Appp.style";
+import { GlobalStyle, Wrapper, Msg } from "./App.style";
 
 class App extends React.Component {
   constructor(props) {
