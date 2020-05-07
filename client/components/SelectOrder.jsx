@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Select, Option } from "./SelectOrder.styles";
+import { Wrapper, Select, Option } from "./SelectOrder.styles";
 
 class SelectOrder extends React.Component {
   constructor(props) {
@@ -43,15 +43,17 @@ class SelectOrder extends React.Component {
     let toggleClass = isOpen ? 'is-open' : '' ;
 
     return (
-      <Select
-        arai-label="Order the reviews by:"
-        className={toggleClass}
-        value={this.state.orderBy}
-        onChange={this.handleOptionChange}>
-        {this.props.options.map((option) => (
-          <Option key={option.value} value={option.value}>{option.text}</Option>
-        ))}
-      </Select>
+      <Wrapper>
+        <Select
+          arai-label="Order the reviews by:"
+          className={toggleClass}
+          value={this.state.orderBy}
+          onChange={this.handleOptionChange}>
+          {this.props.options.map((option) => (
+            <Option key={option.value} value={option.value}>{option.text}</Option>
+            ))}
+        </Select>
+      </Wrapper>
     );
   }
 }

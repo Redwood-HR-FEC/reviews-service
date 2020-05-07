@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
   line-height: 19px;
   color: #111;
   font-family: "Amazon Ember",Arial,sans-serif;
+  margin: 32px;
 `
 
 export const Msg = styled.p`

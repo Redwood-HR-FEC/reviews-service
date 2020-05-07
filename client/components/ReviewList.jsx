@@ -1,6 +1,7 @@
 
 import React from "react";
 import ReviewItem from "./ReviewItem";
+import { List } from "./ReviewList.styles";
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -11,11 +12,11 @@ class ReviewList extends React.Component {
   render() {
 
     return (
-      <ul>
+      <List>
         {this.props.reviews.map(review => (
           <ReviewItem rev={review} key={review._id} handleHelpfulInc={this.props.handleHelpfulInc} />
         ))}
-      </ul>
+      </List>
     );
   }
 }
