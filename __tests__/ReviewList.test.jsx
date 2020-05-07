@@ -49,12 +49,16 @@ describe('ReviewList.jsx Unit Tests', () => {
   // Ya Basic
   test('Should render a ReviewList component on the screen', () => {
     const wrapper = shallow(
-      <ReviewList
-        reviews={reviews}
-        handleHelpfulInc={() => {}}
-      />
+      <ReviewList reviews={reviews} handleHelpfulInc={() => {}} />
     );
     expect(wrapper).toExist();
   });
+
+  test('Accepts reviews props', () => {
+    const wrapper = mount(
+      <ReviewList reviews={reviews} handleHelpfulInc={() => {}} />
+    );
+    expect(wrapper.props().reviews).toEqual(reviews);
+  })
 
 });

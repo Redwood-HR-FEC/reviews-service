@@ -28,13 +28,34 @@ describe('ReviewItem.jsx Unit Tests', () => {
   // Ya Basic
   test('Should render a ReviewItem component on the screen', () => {
     const wrapper = shallow(
-      <ReviewItem
-        rev={review}
-        key={review._id}
-        handleHelpfulInc={() => {}}
-      />
+      <ReviewItem rev={review} handleHelpfulInc={() => {}} />
     );
     expect(wrapper).toExist();
+  });
+
+  test('Has a username (h4)', () => {
+    const wrapper = mount(
+      <ReviewItem rev={review} handleHelpfulInc={() => {}} />
+    );
+    const value = wrapper.find('h4').text();
+    expect(value).toEqual('Ms. Lesly Schoen');
+  });
+
+  test('Accepts rev props', () => {
+    const wrapper = mount(
+      <ReviewItem rev={review} handleHelpfulInc={() => {}} />
+    );
+    expect(wrapper.props().rev).toEqual(review);
+  })
+
+  test('Should call handleHelpfulIncClick when Helpful button is clicked', () => {
+    const mockHelpful = jest.fn();
+    const wrapper = mount(
+      <ReviewItem rev={review} handleHelpfulInc={() => mockHelpful()} />
+    );
+    const helpfulButton = wrapper.find('button').last();
+    helpfulButton.simulate('click');
+    expect(mockHelpful).toHaveBeenCalled();
   });
 
 });
