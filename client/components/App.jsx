@@ -22,16 +22,18 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    // Seed options
+    // Seed the options
     this.setState({
       options: [
         { value: 'top-reviews', text: 'Top Reviews'},
         { value: 'most-recent', text: 'Most Recent'},
       ]
+    }, () => {
+
+      // Hydration is important
+      this.getAllReviews(this.state.options[0].value);
     });
 
-    // Hydration is important
-    this.getAllReviews(this.state.options[0].value);
   }
 
 
