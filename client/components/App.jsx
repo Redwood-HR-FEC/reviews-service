@@ -12,22 +12,35 @@ class App extends React.Component {
     this.state = {
       reviews: [],
       userMsg: '',
+      options: [],
     };
 
     this.handleHelpfulInc = this.handleHelpfulInc.bind(this);
+    this.handleOrderChange = this.handleOrderChange.bind(this);
   }
 
 
   componentDidMount() {
+
+    // Seed options
+    this.setState({
+      options: [
+        { value: 'top-reviews', text: 'Top Reviews'},
+        { value: 'most-recent', text: 'Most Recent'},
+      ]
+    });
+
     this.getAllReviews();
   }
 
 
-  getAllReviews() {
+  getAllReviews(orderBy) {
 
     // Get the ID from the url
     let id = window.location.pathname.slice(1, -1);
     // id = Number(Id); // Un-pad if needed
+
+    console.log('orderBy', orderBy);
 
     // Fetch with the ID
     axios.get(`/api/v1/products/${id}/reviews`)
@@ -41,6 +54,11 @@ class App extends React.Component {
         this.setState({ userMsg: '500: There was an error, please try a different ID.'});
       });
 
+  }
+
+
+  handleOrderChange(newOrder) {
+    this.getAllReviews(newOrder)
   }
 
 
@@ -70,7 +88,7 @@ class App extends React.Component {
         <GlobalStyle />
         <Wrapper>
           {userMsg ? <Msg>{userMsg}</Msg> : ''}
-          <SelectOrder />
+          <SelectOrder options={this.state.options} onChange={this.handleOrderChange}/>
           <ReviewList reviews={this.state.reviews} handleHelpfulInc={this.handleHelpfulInc} />
         </Wrapper>
       </React.Fragment>

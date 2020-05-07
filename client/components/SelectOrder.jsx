@@ -8,10 +8,6 @@ class SelectOrder extends React.Component {
 
       this.state = {
         isOpen: false,
-        options: [
-          { value: 'top-reviews', text: 'Top Reviews'},
-          { value: 'most-recent', text: 'Most Recent'},
-        ],
         orderBy: 'top-reviews',
       }
 
@@ -36,7 +32,7 @@ class SelectOrder extends React.Component {
     this.setState({
       orderBy: event.target.value
     });
-    // this.props.handleOrderChange(event.target.value);
+    this.props.onChange(event.target.value);
   }
 
 
@@ -47,17 +43,15 @@ class SelectOrder extends React.Component {
     let toggleClass = isOpen ? 'is-open' : '' ;
 
     return (
-      <div>
-        {this.state.orderBy}
-        <Select
-          className={toggleClass}
-          value={this.state.orderBy}
-          onChange={this.handleOptionChange}>
-          {this.state.options.map((option, idx) => (
-            <Option key={option.value} value={option.value}>{option.text}</Option>
-            ))}
-        </Select>
-      </div>
+      <Select
+        arai-label="Order the reviews by:"
+        className={toggleClass}
+        value={this.state.orderBy}
+        onChange={this.handleOptionChange}>
+        {this.props.options.map((option) => (
+          <Option key={option.value} value={option.value}>{option.text}</Option>
+        ))}
+      </Select>
     );
   }
 }
