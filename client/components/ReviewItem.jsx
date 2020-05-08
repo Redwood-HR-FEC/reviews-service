@@ -1,5 +1,7 @@
 
 import React from "react";
+import moment from "moment";
+
 import {
   ReviewListItem,
   Profile, Spacer,
@@ -78,7 +80,7 @@ class ReviewItem extends React.Component {
                 <h3>{rev.title}</h3>
               </HeaderTitle>
             </HeaderSummary>
-            <HeaderSubtitle>Reviewed in {rev.country} on {rev.date}</HeaderSubtitle>
+            <HeaderSubtitle>Reviewed in {rev.country} on {moment(rev.date).format("MMM M, YYYY")}</HeaderSubtitle>
             <HeaderDetails>
               <HeaderOptions>
                 {rev.product_options.map((options, idx) => (
