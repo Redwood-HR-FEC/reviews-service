@@ -47,10 +47,8 @@ class App extends React.Component {
     let id = window.location.pathname.slice(1, -1);
     // id = Number(Id); // Un-pad if needed
 
-    console.log('orderBy', orderBy);
-
     // Fetch with the ID
-    axios.get(`/api/v1/products/${id}/reviews`)
+    axios.get(`/api/v1/products/${id}/reviews?order=${orderBy}`)
       .then(response => {
         this.setState({
           reviews: response.data.reviews
@@ -68,7 +66,7 @@ class App extends React.Component {
     this.setState({
       selectedOption: selectedOption.value,
     });
-    // this.getAllReviews(newOrder)
+    this.getAllReviews(selectedOption.value);
   }
 
 
@@ -106,7 +104,6 @@ class App extends React.Component {
             options={this.state.options}
             defaultValue={{ value: 'top-reviews', label: 'Top Reviews'}}
             onChange={this.handleOrderChange} />
-          {/* <SelectOrder options={this.state.options} onChange={this.handleOrderChange}/> */}
           <ReviewList
             reviews={this.state.reviews}
             handleHelpfulInc={this.handleHelpfulInc} />
