@@ -59,7 +59,7 @@ export const HeaderRating = styled.span`
   vertical-align: text-top;
   position: relative;
   vertical-align: text-top;
-  background-image: url(./AmazonUIIcon-sprite.png);
+  background-image: url(./assets/AmazonUIIcon-sprite.png);
   background-size: 400px 900px;
   background-repeat: no-repeat;
   display: inline-block;
@@ -130,7 +130,7 @@ export const BodyWrapper = styled.div`
   overflow: hidden;
 
   span {
-    background-image: url(./AmazonUIIcon-sprite.png);
+    background-image: url(./assets/AmazonUIIcon-sprite.png);
     background-size: 400px 900px;
     background-repeat: no-repeat;
     display: inline-block;
@@ -242,7 +242,7 @@ export const Feedback = styled.p`
   span {
     height: 13px;
     width: 14px;
-    background-image: url(./AmazonUIIcon-sprite.png);
+    background-image: url(./assets/AmazonUIIcon-sprite.png);
     background-size: 400px 900px;
     background-repeat: no-repeat;
     display: inline-block;
