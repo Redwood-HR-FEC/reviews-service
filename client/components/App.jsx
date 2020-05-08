@@ -1,8 +1,11 @@
 
 import React from 'react';
 import axios from 'axios';
+import Select from "react-select";
+
 import ReviewList from "./ReviewList";
 import SelectOrder from "./SelectOrder";
+import { selectStyles } from "./AppSelect.style";
 import { GlobalStyle, Wrapper, Msg } from "./App.style";
 
 class App extends React.Component {
@@ -13,6 +16,7 @@ class App extends React.Component {
       reviews: [],
       userMsg: '',
       options: [],
+      selectedOption: null,
     };
 
     this.handleHelpfulInc = this.handleHelpfulInc.bind(this);
@@ -25,13 +29,14 @@ class App extends React.Component {
     // Seed the options
     this.setState({
       options: [
-        { value: 'top-reviews', text: 'Top Reviews'},
-        { value: 'most-recent', text: 'Most Recent'},
-      ]
+        { value: 'top-reviews', label: 'Top Reviews'},
+        { value: 'most-recent', label: 'Most Recent'},
+      ],
+      selectedOption : 'top-reviews',
     }, () => {
 
       // Hydration is important
-      this.getAllReviews(this.state.options[0].value);
+      this.getAllReviews(this.state.selectedOption);
     });
 
   }
@@ -60,8 +65,11 @@ class App extends React.Component {
   }
 
 
-  handleOrderChange(newOrder) {
-    this.getAllReviews(newOrder)
+  handleOrderChange(selectedOption) {
+    this.setState({
+      selectedOption: selectedOption.value,
+    });
+    // this.getAllReviews(newOrder)
   }
 
 
@@ -83,6 +91,7 @@ class App extends React.Component {
   }
 
 
+
   render() {
     const { userMsg } = this.state;
 
@@ -91,8 +100,17 @@ class App extends React.Component {
         <GlobalStyle />
         <Wrapper>
           {userMsg ? <Msg>{userMsg}</Msg> : ''}
-          <SelectOrder options={this.state.options} onChange={this.handleOrderChange}/>
-          <ReviewList reviews={this.state.reviews} handleHelpfulInc={this.handleHelpfulInc} />
+          <Select
+            arai-label="Order the reviews by:"
+            styles={selectStyles}
+            isSearchable={false}
+            options={this.state.options}
+            defaultValue={{ value: 'top-reviews', label: 'Top Reviews'}}
+            onChange={this.handleOrderChange} />
+          {/* <SelectOrder options={this.state.options} onChange={this.handleOrderChange}/> */}
+          <ReviewList
+            reviews={this.state.reviews}
+            handleHelpfulInc={this.handleHelpfulInc} />
         </Wrapper>
       </React.Fragment>
     );
