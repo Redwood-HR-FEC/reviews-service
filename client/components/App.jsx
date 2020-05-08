@@ -28,10 +28,10 @@ class App extends React.Component {
     // Seed the options
     this.setState({
       options: [
-        { value: 'top-reviews', label: 'Top Reviews'},
-        { value: 'most-recent', label: 'Most Recent'},
+        { value: 'helpful_vote', label: 'Top Reviews'},
+        { value: 'date', label: 'Most Recent'},
       ],
-      selectedOption : 'top-reviews',
+      selectedOption : 'helpful_vote',
     }, () => {
 
       // Hydration is important
@@ -102,7 +102,7 @@ class App extends React.Component {
             styles={selectStyles}
             isSearchable={false}
             options={this.state.options}
-            defaultValue={{ value: 'top-reviews', label: 'Top Reviews'}}
+            defaultValue={{ value: 'helpful_vote', label: 'Top Reviews'}}
             onChange={this.handleOrderChange} />
           <ReviewList
             reviews={this.state.reviews}
