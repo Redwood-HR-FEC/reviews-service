@@ -3,10 +3,9 @@ import React from 'react';
 import axios from 'axios';
 import Select from "react-select";
 
-import ReviewList from "./ReviewList";
-import SelectOrder from "./SelectOrder";
 import { selectStyles } from "./AppSelect.style";
 import { GlobalStyle, Wrapper, Msg } from "./App.style";
+import ReviewList from "./ReviewList";
 
 class App extends React.Component {
   constructor(props) {
