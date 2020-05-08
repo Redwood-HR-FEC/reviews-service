@@ -5,8 +5,9 @@ const { Review, Product } = require('../../database/index');
 module.exports = {
 
   getReviewsByProductId: (req, resp) => {
+
     Product.find({ product_id: `${req.params.product_id}` })
-    .then((data) => {
+      .then((data) => {
 
         // console.log('prodId: ', req.params.product_id);
 
@@ -46,8 +47,24 @@ module.exports = {
 
         // Send it!
         revResults.then(data => {
+
+          // Order the array of returned reviews
+          quickSort = (arr, by) => {
+            if (arr.length <= 1) return arr;
+            let p = arr[Math.floor(arr.length/2)];
+            let l = [];
+            let r = [];
+            for (let i = 0; i < arr.length; i++) {
+              if (i === Math.floor(arr.length/2)) continue;
+              if (arr[i][by] > p[by]) l.push(arr[i]);
+              else r.push(arr[i]);
+            }
+            let sorted = quickSort(l, by).concat(p, quickSort(r, by));
+            return sorted;
+          };
+
           resp.status(200).send({
-            reviews: data
+            reviews: quickSort(data, req.query.order)
           });
         })
         .catch(err => {

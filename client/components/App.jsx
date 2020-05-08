@@ -1,8 +1,11 @@
 
 import React from 'react';
 import axios from 'axios';
-import ReviewList from "./ReviewList";
+import Select from "react-select";
+
+import { selectStyles } from "./AppSelect.style";
 import { GlobalStyle, Wrapper, Msg } from "./App.style";
+import ReviewList from "./ReviewList";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,25 +14,41 @@ class App extends React.Component {
     this.state = {
       reviews: [],
       userMsg: '',
+      options: [],
+      selectedOption: null,
     };
 
     this.handleHelpfulInc = this.handleHelpfulInc.bind(this);
+    this.handleOrderChange = this.handleOrderChange.bind(this);
   }
 
 
   componentDidMount() {
-    this.getAllReviews();
+
+    // Seed the options
+    this.setState({
+      options: [
+        { value: 'helpful_vote', label: 'Top Reviews'},
+        { value: 'date', label: 'Most Recent'},
+      ],
+      selectedOption : 'helpful_vote',
+    }, () => {
+
+      // Hydration is important
+      this.getAllReviews(this.state.selectedOption);
+    });
+
   }
 
 
-  getAllReviews() {
+  getAllReviews(orderBy) {
 
     // Get the ID from the url
     let id = window.location.pathname.slice(1, -1);
     // id = Number(Id); // Un-pad if needed
 
     // Fetch with the ID
-    axios.get(`/api/v1/products/${id}/reviews`)
+    axios.get(`/api/v1/products/${id}/reviews?order=${orderBy}`)
       .then(response => {
         this.setState({
           reviews: response.data.reviews
@@ -40,6 +59,14 @@ class App extends React.Component {
         this.setState({ userMsg: '500: There was an error, please try a different ID.'});
       });
 
+  }
+
+
+  handleOrderChange(selectedOption) {
+    this.setState({
+      selectedOption: selectedOption.value,
+    });
+    this.getAllReviews(selectedOption.value);
   }
 
 
@@ -61,6 +88,7 @@ class App extends React.Component {
   }
 
 
+
   render() {
     const { userMsg } = this.state;
 
@@ -69,8 +97,16 @@ class App extends React.Component {
         <GlobalStyle />
         <Wrapper>
           {userMsg ? <Msg>{userMsg}</Msg> : ''}
-          {/* <SelectOrder /> */}
-          <ReviewList reviews={this.state.reviews} handleHelpfulInc={this.handleHelpfulInc} />
+          <Select
+            arai-label="Order the reviews by:"
+            styles={selectStyles}
+            isSearchable={false}
+            options={this.state.options}
+            defaultValue={{ value: 'helpful_vote', label: 'Top Reviews'}}
+            onChange={this.handleOrderChange} />
+          <ReviewList
+            reviews={this.state.reviews}
+            handleHelpfulInc={this.handleHelpfulInc} />
         </Wrapper>
       </React.Fragment>
     );
