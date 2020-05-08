@@ -4,7 +4,7 @@ import axios from 'axios';
 import Select from "react-select";
 
 import { selectStyles } from "./AppSelect.style";
-import { GlobalStyle, Wrapper, Msg } from "./App.style";
+import { GlobalStyle, Wrapper, Loading, Msg } from "./App.style";
 import ReviewList from "./ReviewList";
 
 class App extends React.Component {
@@ -16,6 +16,7 @@ class App extends React.Component {
       userMsg: '',
       options: [],
       selectedOption: null,
+      loading: false,
     };
 
     this.handleHelpfulInc = this.handleHelpfulInc.bind(this);
@@ -43,6 +44,8 @@ class App extends React.Component {
 
   getAllReviews(orderBy) {
 
+    this.setState({ loading: true });
+
     // Get the ID from the url
     let id = window.location.pathname.slice(1, -1);
     // id = Number(Id); // Un-pad if needed
@@ -51,12 +54,14 @@ class App extends React.Component {
     axios.get(`/api/v1/products/${id}/reviews?order=${orderBy}`)
       .then(response => {
         this.setState({
-          reviews: response.data.reviews
+          reviews: response.data.reviews,
+          loading: false,
         });
       })
       .catch(err => {
         console.log('Error: GET reviews: ', err);
         this.setState({ userMsg: '500: There was an error, please try a different ID.'});
+        this.setState({ loading: false });
       });
 
   }
@@ -90,23 +95,28 @@ class App extends React.Component {
 
 
   render() {
-    const { userMsg } = this.state;
+    const { userMsg, loading } = this.state;
 
     return (
       <React.Fragment>
         <GlobalStyle />
         <Wrapper>
           {userMsg ? <Msg>{userMsg}</Msg> : ''}
-          <Select
-            arai-label="Order the reviews by:"
-            styles={selectStyles}
-            isSearchable={false}
-            options={this.state.options}
-            defaultValue={{ value: 'helpful_vote', label: 'Top Reviews'}}
-            onChange={this.handleOrderChange} />
-          <ReviewList
-            reviews={this.state.reviews}
-            handleHelpfulInc={this.handleHelpfulInc} />
+          {loading
+            ? <Loading></Loading>
+            : (<React.Fragment>
+                <Select
+                  arai-label="Order the reviews by:"
+                  styles={selectStyles}
+                  isSearchable={false}
+                  options={this.state.options}
+                  defaultValue={{ value: 'helpful_vote', label: 'Top Reviews'}}
+                  onChange={this.handleOrderChange} />
+                <ReviewList
+                  reviews={this.state.reviews}
+                  handleHelpfulInc={this.handleHelpfulInc} />
+              </React.Fragment>)
+          }
         </Wrapper>
       </React.Fragment>
     );
