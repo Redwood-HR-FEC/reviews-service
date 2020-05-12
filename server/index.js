@@ -17,9 +17,9 @@ ReviewApp.use('/:id', express.static('public'));
 
 
 // Routes
-ReviewApp.get(`/api/v1/products/:product_id/reviews`, getReviewsByProductId);
+ReviewApp.get(`/review-api/products/:product_id/reviews`, getReviewsByProductId);
 
-ReviewApp.patch(`/api/v1/reviews/:review_id/helpful`, patchReviewIncrementHelp);
+ReviewApp.patch(`/review-api/reviews/:review_id/helpful`, patchReviewIncrementHelp);
 
 
 // LetLive.
