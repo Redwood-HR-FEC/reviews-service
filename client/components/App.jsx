@@ -51,7 +51,7 @@ class App extends React.Component {
     // id = Number(Id); // Un-pad if needed
 
     // Fetch with the ID
-    axios.get(`/review-api/products/${id}/reviews?order=${orderBy}`)
+    axios.get(`/api/v1/products/${id}/reviews?order=${orderBy}`)
       .then(response => {
         this.setState({
           reviews: response.data.reviews,
@@ -78,7 +78,7 @@ class App extends React.Component {
   handleHelpfulInc(review_id) {
 
     // Patch the review by ID
-    axios.patch(`/review-api/reviews/${review_id}/helpful`)
+    axios.patch(`/api/v1/reviews/${review_id}/helpful`)
       .then(resp => {
         // console.log(resp.data);
         this.setState(prev => ({

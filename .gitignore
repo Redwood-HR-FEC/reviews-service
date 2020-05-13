@@ -24,7 +24,7 @@ coverage
 build/
 dist/
 database/data/*
-public/bundle.js
+public/*
 
 # Config
 config/
