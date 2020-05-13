@@ -9,7 +9,8 @@
   },
   "scripts": {
     "seed": "node database/seed.js",
-    "server": "nodemon server",
+    "server": "node server",
+    "server:watch": "nodemon server",
     "start": "webpack -d --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "test": "jest",
