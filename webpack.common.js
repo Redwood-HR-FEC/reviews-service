@@ -1,8 +1,9 @@
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 
 module.exports = {
-  mode: 'development',
   entry: path.resolve(__dirname, 'client', 'index.js'),
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -20,4 +21,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'client/index.html'
+    }),
+  ]
+
 };
