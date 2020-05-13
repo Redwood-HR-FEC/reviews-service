@@ -21,7 +21,8 @@ Replicates an [Amazon product](https://www.amazon.com/dp/B07NXDPLJ9/ref=smi_www_
 Follow the Install guide below first
 > 1. `npm run seed` Populate the database with random data needed to render the service.
 > 1. `npm run server` Starts the Node server which serves the service on [http://127.0.0.1:3003/006/](http://127.0.0.1:3003/006/).
-> 1. `npm run client` Kicks of Webpack with a watcher to transpile, bundle etc.
+> 1. `npm start` Kicks of Webpack with a watcher to transpile, bundle etc.
+> 1. `npm run build` Runs Webpack in Production mode.
 > 1. `npm run test` Runs the tests once
 > 1. `npm run test:watch` Runs the tests and watch for file chages and re-run.
 > 1. `npm run test:cover` Runs the tests with the coverage report and pop it open the browser.
