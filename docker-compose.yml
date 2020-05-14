@@ -8,6 +8,8 @@ services:
       - 'database'
     ports:
       - '4003:3003'
+    volumes:
+      - .:/usr/src/app
 
 
   database:
