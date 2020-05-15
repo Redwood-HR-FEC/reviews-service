@@ -105,7 +105,7 @@ class App extends React.Component {
           {loading
             ? <Loading></Loading>
             : (<React.Fragment>
-                <label for="react-select-3-input">Order the reviews by:</label>
+                <label htmlFor="react-select-3-input">Order the reviews by:</label>
                 <Select
                   styles={selectStyles}
                   isSearchable={false}
