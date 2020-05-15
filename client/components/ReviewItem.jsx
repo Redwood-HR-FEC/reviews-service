@@ -68,7 +68,7 @@ class ReviewItem extends React.Component {
         <article>
           <Header>
             <Profile>
-              <img src={rev.profile.avatar} alt="" />
+              <img src={rev.profile.avatar} alt="" loading="lazy" />
               <h4>{rev.profile.name}</h4>
             </Profile>
             <HeaderSummary>

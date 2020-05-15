@@ -110,9 +110,7 @@ let createProducts = (n) => {
 createProducts(nProducts);
 
 
-
-
-async function scrapeImage (n) {
+const scrapeImage = async function(n) {
 
   const url = faker.internet.avatar();
   const file = path.join(__dirname, 'data',`avatar-${n}.jpg`);
@@ -132,7 +130,7 @@ async function scrapeImage (n) {
   })
 };
 
-for (let i = 0; i < nImages; i++) {
+for (let i = 0; i <= nImages; i++) {
   scrapeImage(i);
 }
 

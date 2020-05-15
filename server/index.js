@@ -1,5 +1,7 @@
 
 const express = require('express');
+const compression = require('compression')
+
 const { getReviewsByProductId, patchReviewIncrementHelp } = require('./controller');
 
 const ReviewApp = express();
@@ -11,6 +13,9 @@ ReviewApp.use((req, resp, next) => {
   console.log(`${req.method}:${req.originalUrl}`);
   next();
 });
+// Compression
+ReviewApp.use(compression());
+
 
 // Static
 ReviewApp.use('/:id', express.static('public'));
