@@ -105,8 +105,8 @@ class App extends React.Component {
           {loading
             ? <Loading></Loading>
             : (<React.Fragment>
+                <label for="react-select-3-input">Order the reviews by:</label>
                 <Select
-                  arai-label="Order the reviews by:"
                   styles={selectStyles}
                   isSearchable={false}
                   options={this.state.options}
