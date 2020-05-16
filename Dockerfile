@@ -8,6 +8,6 @@ RUN npm install
 
 EXPOSE 3003
 
-CMD [ "npm", "run", "server" ]
+CMD [ "npm", "run", "server", "&&", "npm", "run", "build" ]
 
 COPY . .
