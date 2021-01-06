@@ -18,7 +18,7 @@
     "test:cover": "jest --coverage & open coverage/lcov-report/index.html"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "compression": "^1.7.4",
     "eslint-plugin-jest": "^23.8.2",
